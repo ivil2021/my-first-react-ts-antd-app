@@ -1,4 +1,3 @@
-import './App.css';
 import { RegistrationForm } from './components/RegistrationForm';
 
 export function App() {

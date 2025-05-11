@@ -5,71 +5,58 @@
 */
 
 import { FormContainer, TextError } from './index.styles';
-import { useRegistrationForm } from "./useRegistrationForm";
+import { useRegistrationForm } from './useRegistrationForm';
+import { Form, Input, Button } from 'antd';
 
 export function RegistrationForm() {
   const { form } = useRegistrationForm({});
 
-  console.log('submitted data: ', form);
-  
-
   return (
-    <div>
-      <FormContainer>
-        <div>
-          <h3>Форма регистрации</h3>
-        </div>
-
-        <div>
-          <label htmlFor="name">Имя: </label>
-          <input
+    <FormContainer>
+      <h3>Форма регистрации</h3>
+      <Form onFinish={form.handleSubmit} layout="vertical">
+        <Form.Item label="Имя" required>
+          <Input
             name="name"
             value={form.values.name}
             onChange={form.handleChange}
             onBlur={form.handleBlur}
           />
           {form.errors.name && form.touched.name && (
-            <TextError>
-              <div>{form.errors.name}</div>
-            </TextError>
+            <TextError>{form.errors.name}</TextError>
           )}
-        </div>
+        </Form.Item>
 
-        <div>
-          <label htmlFor="email">Email: </label>
-          <input
+        <Form.Item label="Email" required>
+          <Input
             name="email"
             value={form.values.email}
             onChange={form.handleChange}
             onBlur={form.handleBlur}
-            disabled={!form.values.name || Boolean(form.errors.name)}
           />
           {form.errors.email && form.touched.email && (
-            <TextError>
-              <div>{form.errors.email}</div>
-            </TextError>
+            <TextError>{form.errors.email}</TextError>
           )}
-        </div>
+        </Form.Item>
 
-        <div>
-          <label htmlFor="password">Пароль: </label>
-          <input
+        <Form.Item label="Пароль" required>
+          <Input.Password
             name="password"
             value={form.values.password}
             onChange={form.handleChange}
             onBlur={form.handleBlur}
-            type="password"
-            disabled={!form.values.email || Boolean(form.errors.email)}
           />
           {form.errors.password && form.touched.password && (
-            <TextError>
-              <div>{form.errors.password}</div>
-            </TextError>
+            <TextError>{form.errors.password}</TextError>
           )}
-        </div>
+        </Form.Item>
 
-        <button type="submit" disabled={form.isValid}>Зарегистрироваться</button>
-      </FormContainer>
-    </div>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Зарегистрироваться
+          </Button>
+        </Form.Item>
+      </Form>
+    </FormContainer>
   );
 }

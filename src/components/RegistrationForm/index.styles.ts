@@ -34,7 +34,7 @@ export const FormContainer = styled.div`
     display: block;
     width: 100%;
     margin-top: 20px;
-    padding: 12px;
+    padding: 12px 12px 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -50,4 +50,5 @@ export const FormContainer = styled.div`
 
 export const TextError = styled.p`
   color: red;
+  margin: 0;
 `;
