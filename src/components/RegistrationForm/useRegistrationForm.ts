@@ -20,7 +20,7 @@ interface IUseRegistrationForm {
   lastName?: string;
 }
 
-export function useRegistrationForm({name, lastName}: IUseRegistrationForm) {
+export function useRegistrationForm() {
   const form = useFormik({
     initialValues: {
       name: '',

@@ -9,7 +9,7 @@ import { useRegistrationForm } from './useRegistrationForm';
 import { Form, Input, Button } from 'antd';
 
 export function RegistrationForm() {
-  const { form } = useRegistrationForm({});
+  const { form } = useRegistrationForm();
 
   return (
     <FormContainer>
