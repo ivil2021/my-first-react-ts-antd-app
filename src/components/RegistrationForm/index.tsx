@@ -15,7 +15,7 @@ export function RegistrationForm() {
     <FormContainer>
       <h3>Форма регистрации</h3>
       <Form onFinish={form.handleSubmit} layout="vertical">
-        <Form.Item label="Имя" required>
+        <Form.Item label="Имя">
           <Input
             name="name"
             value={form.values.name}
@@ -27,7 +27,7 @@ export function RegistrationForm() {
           )}
         </Form.Item>
 
-        <Form.Item label="Email" required>
+        <Form.Item label="Email">
           <Input
             name="email"
             value={form.values.email}
@@ -39,7 +39,7 @@ export function RegistrationForm() {
           )}
         </Form.Item>
 
-        <Form.Item label="Пароль" required>
+        <Form.Item label="Пароль">
           <Input.Password
             name="password"
             value={form.values.password}
