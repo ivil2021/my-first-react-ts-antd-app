@@ -5,44 +5,21 @@ https://jsonplaceholder.typicode.com/users.
 Обработайте ошибки, чтобы в случае неудачного запроса выводилось сообщение об ошибке.
 */
 
-import { useEffect, useState } from 'react';
-import { List, Typography, Spin, Alert } from 'antd';
-import { UserListContainer } from '../UserList/index.styles';
-import axios from 'axios';
+import { List, Typography, Spin } from 'antd';
+import { UserListContainer } from './index.styles';
+import { getAllUsers } from '../../api/user';
+import useSWR from 'swr';
 
 const { Title } = Typography;
 
-interface IUser {
-  id: number;
-  name: string;
-  email: string;
-}
-
 export function UserList () {
-  const [users, setUsers] = useState<IUser[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { data: users, isValidating: isLoading } = useSWR(
+    'users',
+    async () =>
+      getAllUsers(),
+  );
 
-  useEffect(() => {
-    async function getAllUsers () {
-      try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-        setUsers(response.data);
-      } catch (err) {
-        setError('Не удалось загрузить данные пользователей');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getAllUsers();
-  }, []);
-
-  if (error) {
-    return <Alert message={error} type="error" />;
-  }
-
-  if (loading) {
+  if (isLoading) {
     return <Spin tip="Идет загрузка ..." />;
   }
 

@@ -1,12 +1,12 @@
 import { RegistrationForm } from './components/RegistrationForm';
-import { UserList } from './components/UserList';
 import { PostList } from './components/PostList';
+import { UserList } from './components/UserList';
 
 export function App() {
   return (
     <div>
-      <PostList />
       <UserList />
+      <PostList />
       <RegistrationForm />
     </div>
   );
