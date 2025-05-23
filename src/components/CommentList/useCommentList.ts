@@ -1,12 +1,15 @@
 import useSWR from 'swr';
 import { getAllComments } from '../../api/comment';
 
-export function useCommentList() {
-  return (
-    useSWR(
-      'comments',
-      async () => getAllComments(),
-      { refreshInterval: 5000 }
-    )
-  ) 
+export function useCommentList () {
+  const { data: comments, isValidating: isLoading } = useSWR (
+    'comments',
+    async () => getAllComments (),
+    { refreshInterval: 5000 }
+  )
+
+  return ({
+    comments,
+    isLoading
+  })
 }

@@ -12,7 +12,7 @@ import { useCommentList } from './useCommentList';
 const { Title } = Typography;
 
 export function CommentList () {
-  const { data: comments, isValidating: isLoading } = useCommentList();
+  const { comments, isLoading } = useCommentList ();
 
   if (isLoading) {
     return <Spin tip="Идет загрузка ..." />;
